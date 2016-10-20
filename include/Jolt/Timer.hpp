@@ -1,6 +1,6 @@
-//==--- Pronto/Timer.hpp ---------------------------------- -*- C++ -*- ---==//
+//==--- Jolt/Timer.hpp ------------------------------------ -*- C++ -*- ---==//
 //            
-//                                  Pronto
+//                                  Jolt
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -10,23 +10,23 @@
 //
 /// \file  Timer.hpp
 /// \brief This file provides the definition of a timer class, for which
-///        timepoints can be added, and the time between various timepoints can
-///        be returned.
+///        timepoints can be added, and the time between various timepoints 
+///        can be returned.
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef PRONTO_TIMER_HPP
-#define PRONTO_TIMER_HPP
+#ifndef JOLT_TIMER_HPP
+#define JOLT_TIMER_HPP
 
 #include <array>
 #include <chrono>
 #include <iostream>
 
-namespace Pronto {
-namespace Time   {
+namespace Jolt {
+namespace Time {
 
 /// Converts the resolution to a human readable format.
-/// \tparam    Resolution The resolution to convert to human readable foramt.
+/// \tparam Resolution The resolution to convert to human readable format.
 template <typename Resolution>
 constexpr const char* humanReadableResolution();
 
@@ -111,7 +111,7 @@ void Timer<MT>::printDuration(size_t startTimepoint,
             << humanReadableResolution<Res>()              << "\n";
 }
 
-}} // namespace Pronto::Time
+}} // namespace Jolt::Time
 
-#endif // PRONTO_TIMER_HPP
+#endif // JOLT_TIMER_HPP
 

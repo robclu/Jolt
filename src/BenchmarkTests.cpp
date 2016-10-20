@@ -1,6 +1,6 @@
-//==--- Pronto/src/BenchmarkTests.cpp --------------------- -*- C++ -*- ---==//
+//==--- Jolt/src/BenchmarkTests.cpp ----------------------- -*- C++ -*- ---==//
 //            
-//                                  Pronto
+//                                   Jolt
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -10,15 +10,16 @@
 //
 /// \file  BenchmarkTests.cpp
 /// \brief This file provides benchmark tests for various array manipulation
-///        libraries agains Pronto's implementation.
+///        libraries agains Jolt's implementation.
 //
 //==-----------------------------------------------------------------------==//
 
 #include <blitz/array.h>
-#include <Pronto/Timer.hpp>
+#include <Jolt/Timer.hpp>
+#include <Jolt/SystemParams.hpp>
 
 int main(int argc, char** argv) {
-  Pronto::Time::Timer<3> timer;
+  Jolt::Time::Timer<3> timer;
   auto startPoint = timer.setTimepoint();
 
   blitz::Array<float, 1> A(1000000), B(1000000), C(1000000);
@@ -30,6 +31,8 @@ int main(int argc, char** argv) {
 
   auto finishedPoint = timer.setTimepoint();
 
+  std::cout << "CPU Cores     : " << Jolt::Params::CpuCores  << "\n";
+  std::cout << "SIMD Width    : " << Jolt::Params::SimdWidth << "\n";
   std::cout << "Creation time : "; timer.printDuration(startPoint  , 
                                                        createdPoint);
   std::cout << "Addition time : "; timer.printDuration(createdPoint ,
