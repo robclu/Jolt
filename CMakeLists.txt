@@ -62,11 +62,14 @@ SET(CPU_DETECTED "YES" CACHE STRING "CPU Detected" FORCE)
 SET(PROC_COUNT   0     CACHE STRING "Detecting Processor Count" FORCE)
 ADD_DEFINITIONS(-DCPU_DETECTED)
 
-# LINUX:
+# LINUX: Note that this will find the number of PHYSICAL cores ONLY, since we
+#        only want to parallelize across PHYSICAL cores!
 SET(CPUINFO_FILE "/proc/cpuinfo")
 IF(EXISTS "${CPUINFO_FILE}")
-  FILE(STRINGS "${CPUINFO_FILE}" procs REGEX "^processor.: [0-9]+$")
-  LIST(LENGTH procs PROC_COUNT)
+  EXEC_PROGRAM(cat ARGS "/proc/cpuinfo | grep 'cpu cores'" 
+    OUTPUT_VARIABLE CPU_INFO)
+  STRING(REGEX MATCH "[0-9]+" PROCESSOR_COUNT ${CPU_INFO})
+  SET(PROC_COUNT ${PROCESSOR_COUNT} CACHE STRING "Num Processors" FORCE)
 ENDIF()
 
 # APPLE:
@@ -111,6 +114,33 @@ IF(APPLE)
   STRING(REGEX MATCH "AVX2.0" AVX2_FOUND ${CPU_INFO})
   STRING(COMPARE EQUAL "AVX2.0" "${AVX2_FOUND}" AVX2_TRUE)
 ENDIF(APPLE)
+
+IF(UNIX AND NOT APPLE)
+  EXEC_PROGRAM(cat ARGS "/proc/cpuinfo" OUTPUT_VARIABLE CPU_INFO)
+
+  STRING(REGEX MATCH "sse" SSE_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "sse" "${SSE_FOUND}" SSE_TRUE)
+
+  STRING(REGEX MATCH "sse2" SSE2_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "sse2" "${SSE2_FOUND}" SSE2_TRUE)
+
+  # /proc/cpuinfo apparently omits sse3 :( bad luck atm!
+
+  STRING(REGEX MATCH "ssse3" SSSE3_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "ssse3" "${SSSE3_FOUND}" SSSE3_TRUE)
+
+  STRING(REGEX MATCH "sse4_1" SSE41_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "sse4_1" "${SSE41_FOUND}" SSE41_TRUE)
+
+  STRING(REGEX MATCH "sse4_2" SSE42_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "sse4_2" "${SSE42_FOUND}" SSE42_TRUE)
+
+  STRING(REGEX MATCH "avx" AVX1_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "avx" "${AVX1_FOUND}" AVX1_TRUE)
+
+  STRING(REGEX MATCH "avx2" AVX2_FOUND ${CPU_INFO})
+  STRING(COMPARE EQUAL "avx2" "${AVX2_FOUND}" AVX2_TRUE)
+ENDIF(UNIX AND NOT APPLE)
 
 # Check which vectorized instructions were found and add them:
 IF(AVX2_TRUE AND ENABLE_AVX)
@@ -160,22 +190,19 @@ ENDIF()
 #==--- Asm Flags -----------------------------------------------------------==#
 
 IF(GENERATE_ASM) 
-  SET(ASM_FLAGS_REL "-Wa,-anhlds -fverbose-asm -masm=intel" CACHE 
+  SET(ASM_FLAGS "-Wa,-anhlds -fverbose-asm -masm=intel" CACHE 
     STRING "Assembly release flags" FORCE)
-  SET(ASM_FLAGS_DBG "-Wa,-anhlds -fverbose-asm -masm=intel" CACHE 
-    STRING "Assembly debug flags" FORCE)
-  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${ASM_FLAGS_REL}")
-  SET(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} ${ASM_FLAGS_DBG}"  )
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ASM_FLAGS}")
 ENDIF()
 
 #==--- Set CXXFLAGS --------------------------------------------------------==#
 
 IF(CMAKE_BUILD_TYPE MATCHES Release)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_RELEASE}" 
-    CACHE STRING "CXX FLAGS" FORCE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_RELEASE}" CACHE
+    STRING "CXX Flags" FORCE)
 ELSE()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_DEBUG}" 
-    CACHE STRING "CXX FLAGS" FORCE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_DEBUG}" CACHE
+    STRING "CXX Flags" FORCE)
 ENDIF()
 
 #==--- Tests ---------------------------------------------------------------==#

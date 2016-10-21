@@ -84,7 +84,7 @@ class Timer {
 //==--- Implementation ----------------------------------------------------==//
 
 template <size_t MT>
-Timer<MT>::Timer() {}
+Timer<MT>::Timer() : NewIndex(0) {}
 
 template <size_t MT>
 size_t Timer<MT>::setTimepoint() {

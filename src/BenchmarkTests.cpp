@@ -17,9 +17,10 @@
 #include <blitz/array.h>
 #include <Jolt/Timer.hpp>
 #include <Jolt/SystemParams.hpp>
+#include <Jolt/Vector.hpp>
 
 int main(int argc, char** argv) {
-  Jolt::Time::Timer<3> timer;
+  Jolt::Time::Timer<6> timer;
   auto startPoint = timer.setTimepoint();
 
   blitz::Array<float, 1> A(1000000), B(1000000), C(1000000);
@@ -31,12 +32,25 @@ int main(int argc, char** argv) {
 
   auto finishedPoint = timer.setTimepoint();
 
-  std::cout << "CPU Cores     : " << Jolt::Params::CpuCores  << "\n";
-  std::cout << "SIMD Width    : " << Jolt::Params::SimdWidth << "\n";
-  std::cout << "Creation time : "; timer.printDuration(startPoint  , 
-                                                       createdPoint);
-  std::cout << "Addition time : "; timer.printDuration(createdPoint ,
-                                                       finishedPoint);
+  Jolt::Vector<float> D(1000000), E(1000000), F(1000000);
+
+  auto createdPointJ = timer.setTimepoint();
+
+  D = E + F;
+
+  auto finishedPointJ = timer.setTimepoint();
+
+  std::cout << "CPU Nodes       : " << Jolt::Params::Cpu::Nodes     << "\n";
+  std::cout << "CPU Par Width   : " << Jolt::Params::Cpu::ParaWidth << "\n";
+  std::cout << "CPU Mem Depth   : " << Jolt::Params::Cpu::MemDepth  << "\n";
+  std::cout << "Creation time B : "; timer.printDuration(startPoint  , 
+                                                         createdPoint);
+  std::cout << "Addition time B : "; timer.printDuration(createdPoint ,
+                                                         finishedPoint);
+  std::cout << "Creation time J : "; timer.printDuration(finishedPoint , 
+                                                         createdPointJ);
+  std::cout << "Addition time J : "; timer.printDuration(createdPointJ ,
+                                                         finishedPointJ);
 
   return 0;
 }

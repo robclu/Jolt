@@ -38,20 +38,30 @@
 namespace Jolt   {
 namespace Params {
 
-//==--- CPU Parameters ----------------------------------------------------==//
+//==--- CPU Functionality: ------------------------------------------------==//
+
+namespace Cpu    {
 
 #ifdef CPU_DETECTED
 
-/// Defines the number of cores in the system.
-static constexpr const uint16_t CpuCores = CPU_CORES;
+/// Defines the number of nodes in the system, where a node is essentially a
+/// separate computational unit. We use the node as an abstraction to allow the 
+/// interface to operate on nodes rather than CPU/CPU computational units.
+static constexpr const uint16_t Nodes = CPU_CORES;
 
 #endif // CPU_DETECTED
 
-//==--- GPU Parameters ----------------------------------------------------==//
+} // namespace Cpu
+
+//==--- GPU Functionality: ------------------------------------------------==//
+
+namespace Gpu {
 
 #ifdef GPU_DETECTED
 
 #endif // GPU_DETECTED
+
+} // namespace Gpu
 
 }} // namespace Jolt::Params
 
