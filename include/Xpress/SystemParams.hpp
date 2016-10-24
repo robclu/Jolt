@@ -1,6 +1,6 @@
-//==--- Jolt/SystemParams.hpp ----------------------------- -*- C++ -*- ---==//
+//==--- Xpress/SystemParams.hpp --------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -16,8 +16,8 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_SYSTEM_PARAMS_HPP
-#define JOLT_SYSTEM_PARAMS_HPP
+#ifndef XPRESS_SYSTEM_PARAMS_HPP
+#define XPRESS_SYSTEM_PARAMS_HPP
 
 #ifdef SSE
 #include "SSEParams.h"
@@ -35,7 +35,7 @@
 #include "AVX2Params.h"
 #endif // SSE
 
-namespace Jolt   {
+namespace Xpress {
 namespace Params {
 
 //==--- CPU Functionality: ------------------------------------------------==//
@@ -63,6 +63,6 @@ namespace Gpu {
 
 } // namespace Gpu
 
-}} // namespace Jolt::Params
+}} // namespace Xpress::Params
 
-#endif // JOLT_SYSTEM_PARAMS_HPP
+#endif // XPRESS_SYSTEM_PARAMS_HPP

@@ -1,6 +1,6 @@
-//==--- Jolt/Vector.hpp ----------------------------------- -*- C++ -*- ---==//
+//==--- Xpress/Vector.hpp --------------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -13,10 +13,10 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_VECTOR_HPP
-#define JOLT_VECTOR_HPP
+#ifndef XPRESS_VECTOR_HPP
+#define XPRESS_VECTOR_HPP
 
 #include "Vec.hpp"
 #include "VecSum.hpp"
 
-#endif // JOLT_VECTOR_HPP
+#endif // XPRESS_VECTOR_HPP

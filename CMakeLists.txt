@@ -1,35 +1,35 @@
-#==--- Jolt/CMakeLists.txt -------------------------------------------------==#
+#==--- Xpress/CMakeLists.txt -----------------------------------------------==#
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.4)
-PROJECT(Jolt)
+PROJECT(Xpress)
 
 #==--- Versioning ----------------------------------------------------------==#
 
-SET(Jolt_MAJOR_VERSION 0)
-SET(Jolt_MINOR_VERSION 1)
-SET(Jolt_PATCH_VERSION 0)
-SET(Jolt_VERSION
-  ${Jolt_MAJOR_VERSION}.${Jolt_MINOR_VERSION}.${Jolt_PATCH_VERSION}
+SET(Xpress_MAJOR_VERSION 0)
+SET(Xpress_MINOR_VERSION 1)
+SET(Xpress_PATCH_VERSION 0)
+SET(Xpress_VERSION
+  ${Xpress_MAJOR_VERSION}.${Xpress_MINOR_VERSION}.${Xpress_PATCH_VERSION}
 )
 
 #==--- Directories ---------------------------------------------------------==#
 
 IF(WIN32)
-  SET(Jolt_ROOT                    )
-  SET(Jolt_TOOLS ${Jolt_ROOT}\tools)
-  SET(Blitz_ROOT                   )
+  SET(Xpress_ROOT                      )
+  SET(Xpress_TOOLS ${Xpress_ROOT}\tools)
+  SET(Blitz_ROOT                       )
 ELSE()
-  SET(Jolt_ROOT  /opt/jolt         )
-  SET(Jolt_TOOLS ${Jolt_ROOT}/tools)
-  SET(Blitz_ROOT /opt/blitz        )
+  SET(Xpress_ROOT  /opt/xpress         )
+  SET(Xpress_TOOLS ${Xpress_ROOT}/tools)
+  SET(Blitz_ROOT /opt/blitz            )
 ENDIF()
 
 #==--- FindPackage Path ----------------------------------------------------==#
 
 IF(WIN32)
-  LIST(APPEND_CMAKE_MODULE_PATH ${Jolt_TOOLS}\CMake)
+  LIST(APPEND_CMAKE_MODULE_PATH ${Xpress_TOOLS}\CMake)
 ELSE()
-  LIST(APPEND CMAKE_MODULE_PATH ${Jolt_TOOLS}/cmake)
+  LIST(APPEND CMAKE_MODULE_PATH ${Xpress_TOOLS}/cmake)
 ENDIF()
 
 #==--- Build Type ----------------------------------------------------------==#
@@ -48,7 +48,7 @@ OPTION(GENERATE_ASM "Generate assembly code"  OFF)
 # Define all include directories here:
 IF(WIN32)
 ELSE()
-  INCLUDE_DIRECTORIES(${Jolt_SOURCE_DIR}/include ${Jolt_ROOT}/include)
+  INCLUDE_DIRECTORIES(${Xpress_SOURCE_DIR}/include ${Xpress_ROOT}/include)
 ENDIF()
 
 #==--- Subdirectories ------------------------------------------------------==#
@@ -212,14 +212,14 @@ ENABLE_TESTING()
 SET(TESTS_STRING "Benchmark")
 
 #==--- Install -------------------------------------------------------------==#
-
-INSTALL(DIRECTORY include/Jolt DESTINATION ${Jolt_ROOT}/include/jolt)
+.
+INSTALL(DIRECTORY include/Xpress DESTINATION ${Xpress_ROOT}/include/xpress)
 
 #==--- Print Configuration -------------------------------------------------==#
 # These are basic options, edit appropriately.
 
-message("#==--- CONFIGURATION --------------------------------------------==#")
-message("| JOLT VERSION            : ${Jolt_VERSION}"                         )
+message("|==--- CONFIGURATION --------------------------------------------==|")
+message("| XPRESS VERSION          : ${Xpress_VERSION}"                       )
 message("| BUILD TYPE              : ${CMAKE_BUILD_TYPE}"                     )
 message("| USING CPU               : ${CPU_DETECTED}"                         )
 message("| PROCESSORS              : ${PROC_COUNT}"                           )
@@ -229,6 +229,4 @@ message("| CMAKE_CXX_FLAGS_DEBUG   : ${CMAKE_CXX_FLAGS_DEBUG}"                )
 message("| CMAKE_CXX_FLAGS         : ${CMAKE_CXX_FLAGS}"                      )
 message("| GENERATE ASSEMBLY       : ${GENERATE_ASM}"                         )
 message("| TESTS                   : ${TESTS_STRING}"                         )
-message("#==--------------------------------------------------------------==#")
-
-
+message("|==--------------------------------------------------------------==|")

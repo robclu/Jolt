@@ -1,6 +1,6 @@
-//==--- Jolt/ExpressionTraits.hpp ------------------------- -*- C++ -*- ---==//
+//==--- Xpress/ExpressionTraits.hpp ----------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -13,10 +13,10 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_VEC_TRAITS_HPP
-#define JOLT_VEC_TRAITS_HPP
+#ifndef XPRESS_VEC_TRAITS_HPP
+#define Xpress_VEC_TRAITS_HPP
 
-namespace Jolt   {
+namespace Xpress   {
 
 //==--- Forward declarations ----------------------------------------------==//
 
@@ -49,7 +49,6 @@ struct ExpressionTraits<Vector<DT>> {
   using Type = DT;
 };
 
-}} // namespace Jolt::Traits
+}} // namespace Xpress::Traits
 
-#endif // JOLT_EXPRESSION_TRAITS_HPP
-
+#endif // Xpress_EXPRESSION_TRAITS_HPP

@@ -1,6 +1,6 @@
-//==--- Jolt/AVX1Params.hpp ------------------------------- -*- C++ -*- ---==//
+//==--- Xpress/AVX2Params.hpp ----------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -8,18 +8,18 @@
 //
 //==-----------------------------------------------------------------------==//
 //
-/// \file  AVX1Params.hpp
-/// \brief This file defines parameters when the AVX1 instructions are
+/// \file  AVX2Params.hpp
+/// \brief This file defines parameters when the AVX2 instructions are
 ///        by the CPU.
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_AVX_1_PARAMS_H
-#define JOLT_AVX_1_PARAMS_H
+#ifndef XPRESS_AVX_2_PARAMS_H
+#define Xpress_AVX_2_PARAMS_H
 
 #include <immintrin.h>
 
-namespace Jolt   {
+namespace Xpress {
 namespace Params {
 namespace Cpu    {
 
@@ -29,9 +29,8 @@ static constexpr const uint16_t ParaWidth = 256;
 
 /// Defines the number of parallel registers per node,
 /// which we define as the depth of the memory space.
-static constexpr const uint16_t MemDepth = 16;
+static constexpr const uint16_t MemDepth  = 16;
 
-}} // namespace Jolt::Params::Cpu
+}}} // namespace Xpress::Params::Cpu
 
-#endif // JOLT_AVX_1_PARAMS_H
-
+#endif // XPRESS_AVX_2_PARAMS_H

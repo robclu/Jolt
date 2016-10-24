@@ -1,6 +1,6 @@
-//==--- Jolt/SmallArray.hpp ------------------------------- -*- C++ -*- ---==//
+//==--- Xpress/SmallArray.hpp ----------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -10,17 +10,17 @@
 //
 /// \file  SmallArray.hpp
 /// \brief This file defines the interface of a small array class which stores
-///        an array of elements of size equal to the vector width of the
-///        CPU/GPU.
+///        an array of elements of size equal to the vector width of the CPU
+///        or GPU.
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_SMALL_ARRAY_HPP
-#define JOLT_SMALL_ARRAY_HPP
+#ifndef XPRESS_SMALL_ARRAY_HPP
+#define XPRESS_SMALL_ARRAY_HPP
 
 #include "SystemParams.hpp"
 
-namespace Jolt {
+namespace Xpress {
 
 /// The small array class defines a class to store a specific number of
 /// elements which is equal to the width of the vector instruction registers in
@@ -33,6 +33,6 @@ class SmallArray {
 
 };
 
-} // namespace Jolt
+} // namespace Xpress
 
-#endif // JOLT_ARRAY_HPP
+#endif // XPRESS_ARRAY_HPP

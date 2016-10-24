@@ -1,6 +1,6 @@
-//==--- Jolt/Vec.hpp -------------------------------------- -*- C++ -*- ---==//
+//==--- Xpress/Vec.hpp ------------------------------------ -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -9,17 +9,17 @@
 //==-----------------------------------------------------------------------==//
 //
 /// \file  Vec.hpp
-/// \brief This file defines a basic Vector class for Jolt.
+/// \brief This file defines a basic Vector class for Xpress.
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_VEC_HPP
-#define JOLT_VEC_HPP
+#ifndef XPRESS_VEC_HPP
+#define XPRESS_VEC_HPP
 
 #include "VecExpression.hpp"
 #include <vector>
 
-namespace Jolt {
+namespace Xpress {
 
 /// The Vector class defines a container to store a 
 /// dynamic number of a certain type of elements.
@@ -54,7 +54,6 @@ class Vector : public VecExpression<Vector<DT>> {
   std::vector<Type> Elements; //!< The elements being stored.
 };
 
-} // namespace Jolt
+} // namespace Xpress
 
-#endif // JOLT_VEC_HPP
-
+#endif // XPRESS_VEC_HPP

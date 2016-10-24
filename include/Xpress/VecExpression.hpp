@@ -1,6 +1,6 @@
-//==--- Jolt/VecExpression.hpp ---------------------------- -*- C++ -*- ---==//
+//==--- Xpress/VecExpression.hpp -------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -13,12 +13,12 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_VEC_EXPRESSION_HPP
-#define JOLT_VEC_EXPRESSION_HPP
+#ifndef XPRESS_VEC_EXPRESSION_HPP
+#define XPRESS_VEC_EXPRESSION_HPP
 
 #include "ExpressionTraits.hpp"
 
-namespace Jolt {
+namespace Xpress {
 
 /// The VecExpression class represents any expression on a vector, where the
 /// actual expression implementation is defined by the template. Expressions
@@ -47,6 +47,6 @@ class VecExpression {
   }
 };
 
-} // namespace Jolt
+} // namespace Xpress
 
-#endif // JOLT_VEC_EXPRESSION_HPP
+#endif // XPRESS_VEC_EXPRESSION_HPP

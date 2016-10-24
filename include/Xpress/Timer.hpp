@@ -1,6 +1,6 @@
-//==--- Jolt/Timer.hpp ------------------------------------ -*- C++ -*- ---==//
+//==--- Xpress/Timer.hpp ---------------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -15,15 +15,15 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_TIMER_HPP
-#define JOLT_TIMER_HPP
+#ifndef XPRESS_TIMER_HPP
+#define XPRESS_TIMER_HPP
 
 #include <array>
 #include <chrono>
 #include <iostream>
 
-namespace Jolt {
-namespace Time {
+namespace Xpress {
+namespace Time   {
 
 /// Converts the resolution to a human readable format.
 /// \tparam Resolution The resolution to convert to human readable format.
@@ -111,7 +111,7 @@ void Timer<MT>::printDuration(size_t startTimepoint,
             << humanReadableResolution<Res>()              << "\n";
 }
 
-}} // namespace Jolt::Time
+}} // namespace Xpress::Time
 
-#endif // JOLT_TIMER_HPP
+#endif // XPRESS_TIMER_HPP
 

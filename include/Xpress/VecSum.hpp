@@ -1,6 +1,6 @@
-//==--- Jolt/VecSum.hpp ----------------------------------- -*- C++ -*- ---==//
+//==--- Xpress/VecSum.hpp --------------------------------- -*- C++ -*- ---==//
 //            
-//                                  Jolt
+//                                  Xpress
 //
 //                       Copyright (c) 2016 Rob Clucas
 //
@@ -13,12 +13,12 @@
 //
 //==-----------------------------------------------------------------------==//
 
-#ifndef JOLT_VEC_SUM_HPP
-#define JOLT_VEC_SUM_HPP
+#ifndef XPRESS_VEC_SUM_HPP
+#define XPRESS_VEC_SUM_HPP
 
 #include "VecExpression.hpp"
 
-namespace Jolt {
+namespace Xpress {
 
 /// The VecSum class sums the elements of two vectors.
 /// \tparam Exp1 The first vector expression in the sum.
@@ -49,13 +49,13 @@ class VecSum : public VecExpression<VecSum<Exp1, Exp2>> {
   const Exp2& B;  //!< The second vector expression in the sum.
 };
 
-} // namespace Jolt
+} // namespace Xpress
 
 // Overload of operator+ for two vector expression.
 template <typename Expr1, typename Expr2>
-Jolt::VecSum<Expr1, Expr2> operator+(const Jolt::VecExpression<Expr1>& a,
-                                     const Jolt::VecExpression<Expr2>& b) {
-  return Jolt::VecSum<Expr1, Expr2>(a, b);
+Xpress::VecSum<Expr1, Expr2> operator+(const Jolt::VecExpression<Expr1>& a,
+                                     const Xpress::VecExpression<Expr2>& b) {
+  return Xpress::VecSum<Expr1, Expr2>(a, b);
 };
 
-#endif // JOLT_VEC_SUM_HPP
+#endif // XPRESS_VEC_SUM_HPP
